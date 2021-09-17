@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-color: #ccc;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #fff;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: #ccc;
+            color: #333;
+            background-color: #f0f0f0;
+        }
+
+        .tg .tg-4eph {
+            background-color: #f9f9f9
+        }
+
+        .wrapper {
+            background-color: whitesmoke;
+            list-style-type: none;
+            padding: 10px;
+            border-radius: 3px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: #ccc;
+            width: fit-content;
+        }
+
+        label {
+            margin-right: 0.5em;
+            width: 5em;
+            float: left;
+            text-align: left;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 15em;
+        }
+    </style>
+</head>
+<body>
+<h3>List of users</h3>
+<br>
+<table class="tg">
+    <tr>
+        <th width="30">ID</th>
+        <th width="120">Name</th>
+        <th width="120">Department</th>
+        <th width="120">Salary</th>
+        <th width="60">Edit</th>
+        <th width="60">Delete</th>
+    </tr>
+    <tr th:if="not ${users.isEmpty()}" th:each="user: ${users}">
+        <td align="center" th:text="${user.getId()}"></td>
+        <td align="center">
+            <a th:href="@{/user/{id}(id=${user.getId()})}">
+                <span th:text="${user.getUsername()}"></span>
+            </a>
+        </td>
+
+<!--        <td align="center" th:text="${user.getUsername()}"></td>-->
+        <td align="center" th:text="${user.getDepartment()}"></td>
+        <td align="center" th:text="${user.getSalary()}"></td>
+        <td align="center"><a href="edit_user.html" th:href="@{/admin/edit/{id}(id=${user.getId()})}">Edit</a></td>
+        <td align="center"><a href="remove_user.html" th:href="@{/admin/remove/{id}(id=${user.getId()})}">Remove</a>
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+
+
+<form th:method="POST" th:action="@{/admin/user}" th:object="${user}">
+    <ul class="wrapper">
+        <li class="form-row">
+            <h3 th:text="${title}">Add user</h3>
+            <input type="hidden" th:field="*{id}" id="id"/>
+        </li>
+        <br>
+        <li class="form-row">
+            <label for="name">Name</label>
+            <input type="text" th:field="*{username}" id="name"/>
+        </li>
+        <br>
+        <li class="form-row">
+            <label for="department">Department</label>
+            <input type="text" th:field="*{department}" id="department"/>
+        </li>
+        <br>
+        <li class="form-row">
+            <label for="salary">Salary</label>
+            <input type="text" th:field="*{salary}" id="salary"/>
+        </li>
+        <br>
+        <input type="submit" value="Submit">
+    </ul>
+</form>
+<br>
+<a th:href="@{/logout}"
+   style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">Logout</a>
+</body>
+</html>

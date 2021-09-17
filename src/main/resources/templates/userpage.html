@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${'Page of user ' + user.getUsername()}"></h3>
+<p th:text="${'id: ' + user.getId()}"></p>
+<p th:text="${'username: ' + user.getUsername()}"></p>
+<p th:text="${'department: ' + user.getDepartment()}"></p>
+<p th:text="${'salary: ' + user.getSalary()}"></p>
+<br>
+<a th:href="@{/logout}"
+   style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">Logout</a>
+<a th:href="@{/admin}"
+   style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px;  margin-left:40px; background: aquamarine;  text-decoration: none">CRUD</a>
+
+</body>
+</html>
