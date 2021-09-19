@@ -32,32 +32,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .formLogin()
-//                .successHandler(loginSuccessHandler);
         http
                 .authorizeRequests()
                 .antMatchers("/").authenticated()
-//                .antMatchers("/user/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN")
                 .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
                 .and()
                 .formLogin()
                 .successHandler(loginSuccessHandler);
-//
-//        http.
-//                authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/registration").permitAll()
-//                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-//                .anyRequest()
-//                .authenticated()
-//                .and().csrf().disable(); !!!!
-//                .loginPage("/login").failureUrl("/login?error=true")
-
-
-
     }
 
     @Bean

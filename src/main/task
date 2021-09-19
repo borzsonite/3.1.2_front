@@ -1,0 +1,8 @@
+1. Поля User:
+    -id, firstname, lastname, age, email, password, role
+2. В таблице отображаются все кроме пароля.
+3. МО add: first name, last name, age, email, pass, role
+4. МО edit: id(disabled), first name, last name, age, email, pass, role
+5. МО del: id, first name, last name, age, email, role
+6. Admin panel id, first name, last name, age, email, role, edit_btn, delete_btn
+7. User page id, first name, last name, age, email, role

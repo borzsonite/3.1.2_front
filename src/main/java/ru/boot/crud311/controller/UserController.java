@@ -57,11 +57,6 @@ public class UserController {
         return "redirect:/admin";
     }
 
-//    @GetMapping("/user/{id}")
-//    public String showUserPage(@PathVariable(required = false) Long id, Model model) {
-//        model.addAttribute("user", userService.getUserById(id));
-//        return "userpage";
-//    }
     @GetMapping("/user")
     public String showUserPage2(Principal principal, Model model) {
         model.addAttribute("user", userService.findByUsername(principal.getName()));

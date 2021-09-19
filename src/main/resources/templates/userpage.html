@@ -10,8 +10,8 @@
 <h3 th:text="${'Page of user ' + user.getUsername()}"></h3>
 <p th:text="${'id: ' + user.getId()}"></p>
 <p th:text="${'username: ' + user.getUsername()}"></p>
-<p th:text="${'department: ' + user.getDepartment()}"></p>
-<p th:text="${'salary: ' + user.getSalary()}"></p>
+<p th:text="${'department: ' + user.getLastname()}"></p>
+<p th:text="${'salary: ' + user.getAge()}"></p>
 <br>
 <a th:href="@{/logout}"
    style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">Logout</a>

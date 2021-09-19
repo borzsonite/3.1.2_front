@@ -87,9 +87,9 @@
             </a>
         </td>
 
-<!--        <td align="center" th:text="${user.getUsername()}"></td>-->
-        <td align="center" th:text="${user.getDepartment()}"></td>
-        <td align="center" th:text="${user.getSalary()}"></td>
+        <!--        <td align="center" th:text="${user.getUsername()}"></td>-->
+        <td align="center" th:text="${user.getLastname()}"></td>
+        <td align="center" th:text="${user.getAge()}"></td>
         <td align="center"><a href="edit_user.html" th:href="@{/admin/edit/{id}(id=${user.getId()})}">Edit</a></td>
         <td align="center"><a href="remove_user.html" th:href="@{/admin/remove/{id}(id=${user.getId()})}">Remove</a>
         </td>
@@ -113,16 +113,26 @@
         <br>
         <li class="form-row">
             <label for="department">Department</label>
-            <input type="text" th:field="*{department}" id="department"/>
+            <input type="text" th:field="*{getLastname}" id="department"/>
         </li>
         <br>
         <li class="form-row">
             <label for="salary">Salary</label>
-            <input type="text" th:field="*{salary}" id="salary"/>
+            <input type="text" th:field="*{getAge}" id="salary"/>
         </li>
         <br>
+        <li class="form-row">
+            <label for="roles">Role</label>
+            <select>
+                <option id="roles">Пункт 1</option>
+                <option>Пункт 2</option>
+            </select>
+        </li>
+        <br>
+
         <input type="submit" value="Submit">
     </ul>
+
 </form>
 <br>
 <a th:href="@{/logout}"
