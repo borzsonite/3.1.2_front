@@ -15,7 +15,7 @@
 <br>
 <a th:href="@{/logout}"
    style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px; background: aquamarine;  text-decoration: none">Logout</a>
-<a th:href="@{/admin}"
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"
    style="border: solid #c670db 2px; padding: 10px 15px 10px 15px; border-radius:10px;  margin-left:40px; background: aquamarine;  text-decoration: none">CRUD</a>
 
 </body>

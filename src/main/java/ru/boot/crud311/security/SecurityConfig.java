@@ -10,16 +10,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
+    private LoginSuccessHandler loginSuccessHandler;
 
     @Autowired
-    public void setUserDetailsService(UserDetailsService userDetailsService) {
+    public void setUserDetailsService(UserDetailsService userDetailsService, LoginSuccessHandler loginSuccessHandler) {
         this.userDetailsService = userDetailsService;
+        this.loginSuccessHandler = loginSuccessHandler;
     }
 
     @Override
@@ -29,7 +32,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+//        http
+//                .formLogin()
+//                .successHandler(loginSuccessHandler);
+        http
+                .authorizeRequests()
+                .antMatchers("/").authenticated()
+//                .antMatchers("/user/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+                .and()
+                .formLogin()
+                .successHandler(loginSuccessHandler);
+//
+//        http.
+//                authorizeRequests()
+//                .antMatchers("/").permitAll()
+//                .antMatchers("/login").permitAll()
+//                .antMatchers("/registration").permitAll()
+//                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+//                .anyRequest()
+//                .authenticated()
+//                .and().csrf().disable(); !!!!
+//                .loginPage("/login").failureUrl("/login?error=true")
+
+
+
     }
 
     @Bean
