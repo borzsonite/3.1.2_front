@@ -73,23 +73,29 @@
 <table class="tg">
     <tr>
         <th width="30">ID</th>
-        <th width="120">Name</th>
-        <th width="120">Department</th>
-        <th width="120">Salary</th>
+        <th width="120">First Name</th>
+        <th width="120">Last Name</th>
+        <th width="120">Age</th>
+        <th width="120">Email</th>
+        <th width="120">Role</th>
         <th width="60">Edit</th>
         <th width="60">Delete</th>
     </tr>
     <tr th:if="not ${users.isEmpty()}" th:each="user: ${users}">
         <td align="center" th:text="${user.getId()}"></td>
-        <td align="center">
-            <a th:href="@{/user/{id}(id=${user.getId()})}">
-                <span th:text="${user.getUsername()}"></span>
-            </a>
-        </td>
+        <!--        <td align="center">-->
+        <!--            <a th:href="@{/user/{id}(id=${user.getId()})}">-->
+        <!--                <span th:text="${user.getUsername()}"></span>-->
+        <!--            </a>-->
+        <!--        </td>-->
 
-        <!--        <td align="center" th:text="${user.getUsername()}"></td>-->
+        <td align="center" th:text="${user.getUsername()}"></td>
         <td align="center" th:text="${user.getLastname()}"></td>
         <td align="center" th:text="${user.getAge()}"></td>
+        <td align="center" th:text="${user.getEmail()}"></td>
+        <td align="center" th:each="role: ${user.getRoles()}">
+            <span th:text="${#strings.substringAfter(role.getAuthority(),'ROLE_')}"></span>
+        </td>
         <td align="center"><a href="edit_user.html" th:href="@{/admin/edit/{id}(id=${user.getId()})}">Edit</a></td>
         <td align="center"><a href="remove_user.html" th:href="@{/admin/remove/{id}(id=${user.getId()})}">Remove</a>
         </td>
@@ -107,18 +113,23 @@
         </li>
         <br>
         <li class="form-row">
-            <label for="name">Name</label>
+            <label for="name">First name</label>
             <input type="text" th:field="*{username}" id="name"/>
         </li>
         <br>
         <li class="form-row">
-            <label for="department">Department</label>
-            <input type="text" th:field="*{getLastname}" id="department"/>
+            <label for="department">Last name</label>
+            <input type="text" th:field="*{lastname}" id="department"/>
         </li>
         <br>
         <li class="form-row">
-            <label for="salary">Salary</label>
-            <input type="text" th:field="*{getAge}" id="salary"/>
+            <label for="salary">Age</label>
+            <input type="text" th:field="*{age}" id="salary"/>
+        </li>
+        <br>
+        <li class="form-row">
+            <label for="password">Age</label>
+            <input type="text" th:field="*{password}" id="password"/>
         </li>
         <br>
         <li class="form-row">

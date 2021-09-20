@@ -30,8 +30,10 @@ public class PopulateDB {
         roleRepository.save(roleUser);
 
         Collection<Role> adminRoles = new HashSet<>();
+        Collection<Role> userRoles = new HashSet<>();
         adminRoles.add(roleAdmin);
         adminRoles.add(roleUser);
+        userRoles.add(roleUser);
 
         User admin = new User(
                 "Jhon",
@@ -47,7 +49,7 @@ public class PopulateDB {
                 25,
                 "bob@mail.com",
                 "$2a$12$IcHjkIO/5K5dIcAkOownQ.hqF6lym34lGPWcD8XS4UhSAWQ7iPif2",
-                adminRoles);
+                userRoles);
 
         userRepository.save(admin);
         userRepository.save(user);
