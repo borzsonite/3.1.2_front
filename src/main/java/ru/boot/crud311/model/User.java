@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "users")
@@ -48,6 +49,12 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
         this.roles = roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = new HashSet<>();
+        this.roles.add(new Role(roles));
+//
     }
 
     @Override

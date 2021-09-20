@@ -131,8 +131,8 @@
         <li class="form-row">
             <label for="roles">Role</label>
             <select id="roles" th:field="*{roles}">
-                <option id="admin" value="admin">ADMIN</option>
-                <option id="user" value="user">USER</option>
+                <option id="admin" name=roles[] value="ROLE_ADMIN">ADMIN</option>
+                <option id="user" name=roles[] value="ROLE_USER">USER</option>
             </select>
 <!--            <select id="roles">-->
 <!--                <option id="admin" value="admin">ADMIN</option>-->
