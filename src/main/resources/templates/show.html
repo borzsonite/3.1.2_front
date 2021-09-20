@@ -83,18 +83,14 @@
     </tr>
     <tr th:if="not ${users.isEmpty()}" th:each="user: ${users}">
         <td align="center" th:text="${user.getId()}"></td>
-        <!--        <td align="center">-->
-        <!--            <a th:href="@{/user/{id}(id=${user.getId()})}">-->
-        <!--                <span th:text="${user.getUsername()}"></span>-->
-        <!--            </a>-->
-        <!--        </td>-->
-
         <td align="center" th:text="${user.getUsername()}"></td>
         <td align="center" th:text="${user.getLastname()}"></td>
         <td align="center" th:text="${user.getAge()}"></td>
         <td align="center" th:text="${user.getEmail()}"></td>
-        <td align="center" th:each="role: ${user.getRoles()}">
-            <span th:text="${#strings.substringAfter(role.getAuthority(),'ROLE_')}"></span>
+        <td align="center" >
+            <span th:each="role: ${user.getRoles()}">
+              <span th:text="${#strings.substringAfter(role.getAuthority(),'ROLE_')}"></span>
+            </span>
         </td>
         <td align="center"><a href="edit_user.html" th:href="@{/admin/edit/{id}(id=${user.getId()})}">Edit</a></td>
         <td align="center"><a href="remove_user.html" th:href="@{/admin/remove/{id}(id=${user.getId()})}">Remove</a>
