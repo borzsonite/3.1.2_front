@@ -128,16 +128,20 @@
         </li>
         <br>
         <li class="form-row">
-            <label for="password">Age</label>
+            <label for="password">Password</label>
             <input type="text" th:field="*{password}" id="password"/>
         </li>
         <br>
         <li class="form-row">
             <label for="roles">Role</label>
-            <select>
-                <option id="roles">Пункт 1</option>
-                <option>Пункт 2</option>
+            <select id="roles" th:field="*{roles}">
+                <option id="admin" value="admin">ADMIN</option>
+                <option id="user" value="user">USER</option>
             </select>
+<!--            <select id="roles">-->
+<!--                <option id="admin" value="admin">ADMIN</option>-->
+<!--                <option id="user" value="user">USER</option>-->
+<!--            </select>-->
         </li>
         <br>
 
