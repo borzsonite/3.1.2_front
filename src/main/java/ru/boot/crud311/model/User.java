@@ -7,8 +7,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -36,10 +38,10 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
     public User(String username, String lastname, int age, String email, String password, Collection<Role> roles) {
@@ -52,9 +54,10 @@ public class User implements UserDetails {
     }
 
     public void setRoles(String roles) {
-        this.roles = new HashSet<>();
+        if (this.roles == null) {
+            this.roles = new HashSet<>();
+        }
         this.roles.add(new Role(roles));
-//
     }
 
     @Override

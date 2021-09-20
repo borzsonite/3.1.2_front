@@ -33,6 +33,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
+    @Transactional
     public void save(User user) {
         userRepository.save(user);
     }
@@ -41,6 +42,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).get();
     }
 
+    @Transactional
     public void delete(Long id) {
         userRepository.deleteById(id);
     }

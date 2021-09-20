@@ -13,45 +13,46 @@ import java.util.HashSet;
 
 @Component
 public class PopulateDB {
-    private RoleRepository roleRepository;
-    private UserRepository userRepository;
-
-    @Autowired
-    public PopulateDB(RoleRepository roleRepository, UserRepository userRepository) {
-        this.roleRepository = roleRepository;
-        this.userRepository = userRepository;
-    }
-
-    @PostConstruct
-    public void populateDB() {
-        Role roleAdmin = new Role(1L, "ROLE_ADMIN");
-        Role roleUser = new Role(2L, "ROLE_USER");
-        roleRepository.save(roleAdmin);
-        roleRepository.save(roleUser);
-
-        Collection<Role> adminRoles = new HashSet<>();
-        Collection<Role> userRoles = new HashSet<>();
-        adminRoles.add(roleAdmin);
-        adminRoles.add(roleUser);
-        userRoles.add(roleUser);
-
-        User admin = new User(
-                "Jhon",
-                "Connor",
-                35,
-                "jhon@mail.com",
-                "$2a$12$IcHjkIO/5K5dIcAkOownQ.hqF6lym34lGPWcD8XS4UhSAWQ7iPif2",
-                adminRoles);
-
-        User user = new User(
-                "Bob",
-                "Smith",
-                25,
-                "bob@mail.com",
-                "$2a$12$IcHjkIO/5K5dIcAkOownQ.hqF6lym34lGPWcD8XS4UhSAWQ7iPif2",
-                userRoles);
-
-        userRepository.save(admin);
-        userRepository.save(user);
-    }
+//    private RoleRepository roleRepository;
+//    private UserRepository userRepository;
+//
+//    @Autowired
+//    public PopulateDB(RoleRepository roleRepository, UserRepository userRepository) {
+//        this.roleRepository = roleRepository;
+//        this.userRepository = userRepository;
+//    }
+//
+//    @PostConstruct
+//    public void populateDB() {
+//        Role roleAdmin = new Role(1L,"ROLE_ADMIN");
+//        Role roleUser = new Role(2L,"ROLE_USER");
+//        roleRepository.save(roleAdmin);
+//        roleRepository.save(roleUser);
+//
+//        Collection<Role> adminRoles = new HashSet<>();
+//        Collection<Role> userRoles = new HashSet<>();
+//        adminRoles.add(roleAdmin);
+//        adminRoles.add(roleUser);
+//        userRoles.add(roleUser);
+//
+//        User admin = new User(
+//                "Jhon",
+//                "Connor",
+//                35,
+//                "jhon@mail.com",
+//                "$2a$12$IcHjkIO/5K5dIcAkOownQ.hqF6lym34lGPWcD8XS4UhSAWQ7iPif2",
+//                adminRoles);
+//
+//        User user = new User(
+//                "Bob",
+//                "Smith",
+//                25,
+//                "bob@mail.com",
+//                "$2a$12$IcHjkIO/5K5dIcAkOownQ.hqF6lym34lGPWcD8XS4UhSAWQ7iPif2",
+//                userRoles);
+//
+//        userRepository.save(user);
+//        userRepository.save(admin);
+//
+//    }
 }
