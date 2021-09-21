@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void save(User user) {
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
     }
 
     public User getUserById(Long id) throws UsernameNotFoundException {
