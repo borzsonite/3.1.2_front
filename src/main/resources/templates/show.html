@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -128,16 +128,25 @@
             <input type="text" th:field="*{password}" id="password"/>
         </li>
         <br>
-        <li class="form-row">
+<!--        <li class="form-row">-->
+<!--            <label for="roles">Role</label>-->
+<!--            <select id="roles">-->
+<!--                <option id="admin" value="ROLE_ADMIN">ADMIN</option>-->
+<!--               <option id="user" value="ROLE_USER">USER</option> &lt;!&ndash; добавление, редактирование работате, роль не добавляется&ndash;&gt;-->
+<!--            </select>-->
+
+<!--            <label for="roles">Role</label>-->
+<!--            <select id="roles" th:field="*{roles}">-->
+<!--                <option id="admin" value="ROLE_ADMIN">ADMIN</option>-->
+<!--                <option id="user" value="ROLE_USER">USER</option> &lt;!&ndash; добавление с ролью - работает, редактирование - не работает&ndash;&gt;-->
+<!--            </select>-->
+
             <label for="roles">Role</label>
-            <select id="roles" th:field="*{roles}">
+        <select id="roles" th:field="*{roles}"> <!--    добавление работает, роль добавляется. Не редактируется-->
                 <option id="admin" name=roles[] value="ROLE_ADMIN">ADMIN</option>
                 <option id="user" name=roles[] value="ROLE_USER">USER</option>
             </select>
-<!--            <select id="roles">-->
-<!--                <option id="admin" value="admin">ADMIN</option>-->
-<!--                <option id="user" value="user">USER</option>-->
-<!--            </select>-->
+
         </li>
         <br>
 

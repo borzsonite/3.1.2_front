@@ -1,6 +1,5 @@
 package ru.boot.crud311.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.boot.crud311.model.Role;
 import ru.boot.crud311.model.User;
@@ -8,6 +7,7 @@ import ru.boot.crud311.repository.RoleRepository;
 import ru.boot.crud311.repository.UserRepository;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -52,10 +52,12 @@ public class PopulateDB {
                 "$2a$12$IcHjkIO/5K5dIcAkOownQ.hqF6lym34lGPWcD8XS4UhSAWQ7iPif2",
                 userRoles);
 
-        if (userService.findByUsername(user.getUsername()) == null ||
-                userService.findByUsername(admin.getUsername()) == null) {
+        if (userService.findByUsername(user.getUsername()) == null) {
             userService.save(user);
+        };
+        if (userService.findByUsername(admin.getUsername()) == null) {
             userService.save(admin);
-        }
+
+        };
     }
 }
