@@ -23,8 +23,8 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String role;
 
-    @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
-    private Collection<User> users;
+//    @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
+//    private Collection<User> users;
 
     public Role(Long id, String role) {
         this.id = id;
@@ -38,5 +38,10 @@ public class Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
         return role;
+    }
+
+    @Override
+    public String toString() {
+        return this.role;
     }
 }

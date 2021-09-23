@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import ru.boot.crud311.model.Role;
 import ru.boot.crud311.model.User;
 import ru.boot.crud311.repository.UserRepository;
-
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.List;
@@ -35,7 +34,7 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void save(User user) {
-        userRepository.saveAndFlush(user);
+        userRepository.save(user);
     }
 
     public User getUserById(Long id) throws UsernameNotFoundException {

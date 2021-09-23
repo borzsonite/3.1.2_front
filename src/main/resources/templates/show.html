@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html>
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -87,11 +87,12 @@
         <td align="center" th:text="${user.getLastname()}"></td>
         <td align="center" th:text="${user.getAge()}"></td>
         <td align="center" th:text="${user.getEmail()}"></td>
-        <td align="center" >
-            <span th:each="role: ${user.getRoles()}">
-              <span th:text="${#strings.substringAfter(role.getAuthority(),'ROLE_')}"></span>
-            </span>
-        </td>
+        <td align="center" th:text="${user.getRoles()}"></td>
+<!--        <td align="center" >-->
+<!--            <span th:each="role: ${user.getRoles()}">-->
+<!--              <span th:text="${#strings.substringAfter(role.getAuthority(),'ROLE_')}"></span>-->
+<!--            </span>-->
+<!--        </td>-->
         <td align="center"><a href="edit_user.html" th:href="@{/admin/edit/{id}(id=${user.getId()})}">Edit</a></td>
         <td align="center"><a href="remove_user.html" th:href="@{/admin/remove/{id}(id=${user.getId()})}">Remove</a>
         </td>
@@ -119,8 +120,13 @@
         </li>
         <br>
         <li class="form-row">
-            <label for="salary">Age</label>
-            <input type="text" th:field="*{age}" id="salary"/>
+            <label for="age">Age</label>
+            <input type="text" th:field="*{age}" id="age"/>
+        </li>
+        <br>
+        <li class="form-row">
+            <label for="email">Email</label>
+            <input type="text" th:field="*{email}" id="email"/>
         </li>
         <br>
         <li class="form-row">
@@ -128,25 +134,11 @@
             <input type="text" th:field="*{password}" id="password"/>
         </li>
         <br>
-<!--        <li class="form-row">-->
-<!--            <label for="roles">Role</label>-->
-<!--            <select id="roles">-->
-<!--                <option id="admin" value="ROLE_ADMIN">ADMIN</option>-->
-<!--               <option id="user" value="ROLE_USER">USER</option> &lt;!&ndash; добавление, редактирование работате, роль не добавляется&ndash;&gt;-->
-<!--            </select>-->
-
-<!--            <label for="roles">Role</label>-->
-<!--            <select id="roles" th:field="*{roles}">-->
-<!--                <option id="admin" value="ROLE_ADMIN">ADMIN</option>-->
-<!--                <option id="user" value="ROLE_USER">USER</option> &lt;!&ndash; добавление с ролью - работает, редактирование - не работает&ndash;&gt;-->
-<!--            </select>-->
-
             <label for="roles">Role</label>
-        <select id="roles" th:field="*{roles}"> <!--    добавление работает, роль добавляется. Не редактируется-->
-                <option id="admin" name=roles[] value="ROLE_ADMIN">ADMIN</option>
-                <option id="user" name=roles[] value="ROLE_USER">USER</option>
+        <select id="roles" name="roles" th:field="*{roles}"> <!--    добавление работает, роль добавляется. Не редактируется-->
+                <option id="admin" value="ROLE_ADMIN">ADMIN</option>
+                <option id="user" value="ROLE_USER">USER</option>
             </select>
-
         </li>
         <br>
 

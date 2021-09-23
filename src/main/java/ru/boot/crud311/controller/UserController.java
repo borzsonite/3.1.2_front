@@ -7,18 +7,24 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.boot.crud311.model.Role;
 import ru.boot.crud311.model.User;
+import ru.boot.crud311.service.RoleService;
 import ru.boot.crud311.service.UserService;
 import java.security.Principal;
+import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 public class UserController {
 
     private UserService userService;
+    private RoleService roleService;
 
     @Autowired
-    public void setUserService(UserService userService) {
+    public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping()
@@ -30,9 +36,9 @@ public class UserController {
     @GetMapping("/admin")
     public String showUsers(Model model, Principal principal) {
         User user = new User();
+        model.addAttribute("user", user);
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("title", "Add user");
-        model.addAttribute("user", user);
         return "show";
     }
 
@@ -44,6 +50,7 @@ public class UserController {
 
     @GetMapping("/admin/edit/{id}")
     public String editUser(@PathVariable Long id, Model model) {
+        System.out.println("Inside controller");
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("title", "Edit user");
@@ -52,7 +59,6 @@ public class UserController {
 
     @GetMapping("/admin/remove/{id}")
     public String removeUser(@PathVariable(value = "id") Long id) {
-        User user = userService.getUserById(id);
         userService.delete(id);
         return "redirect:/admin";
     }
